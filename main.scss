@@ -1,0 +1,518 @@
+/// kamome.hane
+
+// <--- Colors
+$color-bg: #f9fffa;
+$color-font: #222;
+$color-select: #c1feae;
+$color-link: #049d67;
+$color-outline: #00b374;
+$color-mgnote: #00cf86;
+// code blocks
+$white: #f4f7f7;
+$shadow: #d5d9d9;
+$code-select: #dce0e0;
+// --->
+
+// <--- Variables
+$space-between: 0.9rem;
+$min-size: 715px;
+// --->
+
+// <--- Mixins
+@mixin hyphens($property) {
+  -webkit-hyphens: $property;
+  -ms-hyphens: $property;
+  hyphens: $property;
+}
+
+@mixin cjk-scaling {
+  // Need to scale down a little bit to match Garibaldi
+  font-size: 89%;
+}
+// --->
+
+// Base setting for html
+html {
+  font-size: 2.4vw;
+  height: 100%;
+  font-family: garibaldi, alegreya, palatino, serif;
+
+  @media all and (min-width: 960px) {
+    font-size: 23px;
+  }
+
+  @media all and (max-width: $min-size) {
+    font-size: 18px;
+  }
+
+  @media print {
+    font-size: 12pt;
+  }
+}
+
+::selection {
+  background-color: $color-select;
+}
+
+// Default width of any top level elements
+$body-text-width: 27.5rem;
+$body-pad: 1.25rem;
+
+body {
+  background-color: $color-bg;
+  color: $color-font;
+
+  // use html font size
+  font-size: 1rem;
+  // center elements
+  margin: auto;
+  // leave some space on top and both sides
+  padding: 2.5rem 0;
+
+  @include hyphens(auto);
+  // small caps everything
+  font-feature-settings: "c2sc" 1;
+
+  // add padding for mobile
+  @media all and (max-width: $min-size) {
+    padding-left: $body-pad;
+    padding-right: $body-pad;
+  }
+}
+
+header > *,
+main > * {
+  max-width: $body-text-width;
+  // center elements
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  // only enable wide elements when screen are large enough
+  @media all and (min-width: 675px) {
+    & > figure,
+    & > .figure,
+    & > iframe {
+      max-width: $body-text-width + 2.5rem;
+      display: block;
+    }
+    > .sourceCode,
+    > pre {
+      max-width: $body-text-width + 2.5rem;
+    }
+    > .wider {
+      max-width: $body-text-width + 5.5rem;
+    }
+    > .wide {
+      max-width: $body-text-width + 8.5rem;
+    }
+    > .widest {
+      max-width: $body-text-width + 10rem;
+    }
+  }
+  > .full {
+    width: 100vw;
+  }
+  > iframe {
+    margin-bottom: $space-between;
+  }
+}
+
+// --- CJK language setting
+:lang(ja) {
+  @include cjk-scaling;
+  font-family: garibaldi, "Hiragino Mincho ProN", YuMincho, "Yu Mincho", "Noto Serif CJK JP",
+    "Source Han Serif JP", "MS Mincho", HiraMinProN-W3, serif;
+}
+
+:lang(zh-Hans) {
+  @include cjk-scaling;
+  font-family: garibaldi, "Songti SC", "Noto Serif CJK SC", "Source Han Serif CN",
+    "Source Han Serif SC", NSimSun, SimSun, "LiSong Pro", PMingLiU, MingLiU, HiraMinProN-W3, serif;
+}
+
+:lang(zh-Hant) {
+  @include cjk-scaling;
+  font-family: garibaldi, "Songti TC", "Noto Serif CJK TC", "Source Han Serif CN",
+    "Source Han Serif TC", PMingLiU, STSong, "LiSong Pro", MingLiU, NSimSun, SimSun, HiraMinProN-W3,
+    serif;
+}
+// --->
+
+// --- Headings
+// Don't use more than 4 levels of heading
+h1,
+h2,
+h3 {
+  margin-top: $space-between;
+  margin-bottom: 0.2rem;
+}
+
+// heading 1: small caps
+h1 {
+  font-weight: normal;
+  font-feature-settings: "smcp" 1;
+  text-transform: lowercase;
+  font-size: 1.15rem;
+  letter-spacing: 0.06rem;
+  margin-bottom: 0.2rem;
+
+  code {
+    text-transform: none;
+  }
+
+  // add a dot after h1 heading, e.g.
+  // 1. Title
+  // 1.2 Subtitle
+  .header-section-number::after {
+    content: ".";
+  }
+}
+
+// heading 2,3: bold
+h2,
+h3 {
+  font-weight: bold;
+}
+h2 {
+  font-size: 1.15rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+// compress space between consecutive headings
+h1 + h2,
+h2 + h3 {
+  margin-top: 0rem;
+}
+// --->
+
+// <--- Header
+header {
+  white-space: nowrap;
+  // right align author
+  .author {
+    margin-top: -$space-between;
+    text-align: right;
+  }
+
+  #title {
+    margin-top: 0;
+    font-size: 1.7rem;
+    // reset font setting from h1 tag
+    // really need an alternative to this
+    font-feature-settings: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    margin-bottom: 0.9rem;
+  }
+}
+// --->
+
+// <--- Element styling
+p {
+  line-height: 1.48;
+  em {
+    font-style: italic;
+  }
+}
+
+a {
+  // remove underline
+  text-decoration: none;
+  color: $color-link;
+
+  // Add outline to every link element
+  &:focus {
+    outline-width: 2px;
+    outline-style: dashed;
+    outline-color: $color-outline;
+  }
+  // a custom class
+  &.nofocus:focus {
+    outline-style: none;
+  }
+}
+
+code {
+  font-family: "fira mono", monospace;
+  font-size: 0.82em;
+  @include hyphens(none);
+  // use medium weight for body text
+  li &,
+  p & {
+    font-weight: 500;
+    font-size: 0.76em;
+  }
+  a {
+    color: #333;
+  }
+}
+
+pre {
+  background-color: $white;
+  font-size: 0.86rem;
+  padding: 0.5rem 1rem;
+
+  // don't wrap lines for code block
+  overflow-x: auto;
+  word-break: keep-all;
+
+  // some nice shadows and rounded corners
+  border-radius: 0.4rem;
+  box-shadow: 1px 1px 4px $shadow;
+
+  margin-bottom: $space-between;
+
+  ::selection {
+    background-color: $code-select;
+  }
+
+  code {
+    display: block;
+  }
+}
+
+img {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  display: block;
+}
+
+// use italics for quotes
+q {
+  font-style: italic;
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 0.95em;
+  padding-left: 0.5rem;
+  // reduce space above and below
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// <--- lists
+ul,
+ol {
+  margin-bottom: 0.35rem;
+}
+
+li,
+dt {
+  font-size: 96%;
+  margin-bottom: 0.25rem;
+}
+
+dd {
+  font-size: 93%;
+  margin-bottom: 0.4rem;
+}
+
+// nested lists
+li {
+  li {
+    padding-left: 0.5rem;
+    font-size: 100%;
+    margin-bottom: 0;
+  }
+
+  ul,
+  ol,
+  dl {
+    margin-bottom: 0;
+  }
+}
+
+// reduce space between paragraph and lists
+p + {
+  ul,
+  ol,
+  dl,
+  .links {
+    margin-top: -0.3rem;
+  }
+}
+
+// numbers
+ol {
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+// unordered
+ul {
+  list-style: none;
+}
+ul li::before {
+  content: "-";
+  margin-right: 0.4rem;
+}
+
+// lists
+.links li::before,
+dt::before {
+  content: "»";
+  margin-right: 0.4rem;
+}
+
+// no bullets
+.nobullet li::before {
+  content: "";
+  margin-right: 0rem;
+}
+// --->
+
+hr {
+  height: 2px;
+  background: #666;
+  margin: 0.4rem auto;
+  p + & {
+    margin-top: -0.5rem;
+  }
+}
+
+.tex {
+  &.math,
+  &.noenv {
+    display: inline-block;
+  }
+  &:not(.math):not(.noenv) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.footnotes {
+  margin-top: 1.17rem;
+  font-size: 0.91rem;
+  ul {
+    padding-left: 0;
+  }
+  li::before {
+    content: "";
+    margin-right: 0;
+  }
+}
+
+// <--- Custom atomic classes
+// margin notes
+.mgnote {
+  float: inherit;
+  margin-right: inherit;
+  width: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-left: inherit;
+  padding-left: inherit;
+  margin-top: inherit;
+
+  &::before {
+    content: " (";
+  }
+  &::after {
+    content: ")";
+  }
+
+  &.darkzone {
+    display: none;
+  }
+
+  @media screen and (min-width: 1120px) {
+    float: right;
+    margin-right: -10.2rem;
+    width: 7.7rem;
+    font-size: 0.75rem;
+    line-height: 1.32;
+    border-left: 2px solid $color-mgnote;
+    padding-left: 0.4rem;
+    margin-top: 0.28rem;
+
+    &.left {
+      float: left;
+      margin-left: -10.7rem;
+      margin-right: 0;
+      border-left: none;
+      padding-left: 0;
+      border-right: 2px solid $color-mgnote;
+      padding-right: 0.4rem;
+      text-align: right;
+    }
+
+    &.darkzone {
+      display: inherit;
+      border-left: inherit;
+    }
+
+    &::before {
+      content: "";
+    }
+    &::after {
+      content: ".";
+    }
+    &.no-period::after {
+      content: "";
+    }
+  }
+}
+
+// darkness
+.darkzone,
+.darkzone * {
+  color: $color-bg;
+}
+
+// break all characters
+.break-all {
+  word-break: break-all;
+}
+// don't break at anywhere
+.nowrap {
+  white-space: nowrap;
+}
+
+// turn off small caps
+.cap,
+.header-section-number {
+  font-feature-settings: "c2sc" 0;
+}
+
+// symbol
+.symbol {
+  margin-right: 0.3rem;
+  user-select: none;
+}
+
+// small caps with relaxed letterspacing
+.smcp {
+  font-feature-settings: "smcp" 1;
+  text-transform: lowercase;
+  letter-spacing: 0.06rem;
+  @include hyphens(none);
+}
+.c2sc {
+  font-feature-settings: "c2sc" 1;
+}
+
+// extra ligatures
+.dlig {
+  font-feature-settings: "dlig";
+}
+
+// right align
+.rali {
+  text-align: right;
+}
+
+// center shadows for image
+img.shadow {
+  box-shadow: 0px 0px 10px $shadow;
+}
+// --->
