@@ -9,6 +9,8 @@ $color-outline: #00b374;
 $color-mgnote: #00cf86;
 // code blocks
 $white: #f4f7f7;
+$whitein: #ecefef;
+$whiteout: #f7fafa;
 $shadow: #d5d9d9;
 $code-select: #dce0e0;
 // --->
@@ -271,6 +273,13 @@ pre {
     background-color: $code-select;
   }
 
+  .codein & {
+    background-color: $whitein;
+  }
+  .codeout & {
+    background-color: $whiteout;
+  }
+
   code {
     display: block;
   }
@@ -456,8 +465,8 @@ hr {
 }
 
 .prompt-in,
-.prompt-out{
-  margin-top:-0.5rem;
+.prompt-out {
+  margin-top: -0.5rem;
 }
 
 // repl
@@ -467,7 +476,7 @@ hr {
   user-select: none;
 
   text-align: left;
-  margin-bottom:0.3rem;
+  margin-bottom: 0.3rem;
 
   @media screen and (min-width: $narrow-size) {
     float: left;
@@ -483,6 +492,9 @@ hr {
 }
 .prompt-out {
   color: #d84315;
+}
+.sourceCode + .sourceCode {
+  margin-top: -0.5rem;
 }
 
 // darkness
