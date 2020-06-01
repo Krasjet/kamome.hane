@@ -16,6 +16,7 @@ $code-select: #dce0e0;
 // <--- Variables
 $space-between: 0.9rem;
 $min-size: 715px;
+$narrow-size: 675px;
 // --->
 
 // <--- Mixins
@@ -90,7 +91,7 @@ main > * {
 
 main {
   // only enable wide elements when screen are large enough
-  @media all and (min-width: 675px) {
+  @media all and (min-width: $narrow-size) {
     & > figure,
     & > .figure,
     & > iframe {
@@ -405,15 +406,6 @@ hr {
 // <--- Custom atomic classes
 // margin notes
 .mgnote {
-  float: inherit;
-  margin-right: inherit;
-  width: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  border-left: inherit;
-  padding-left: inherit;
-  margin-top: inherit;
-
   &::before {
     content: " (";
   }
@@ -461,6 +453,36 @@ hr {
       content: "";
     }
   }
+}
+
+.prompt-in,
+.prompt-out{
+  margin-top:-0.5rem;
+}
+
+// repl
+.prompt-in,
+.prompt-out {
+  // not selectable
+  user-select: none;
+
+  text-align: left;
+  margin-bottom:0.3rem;
+
+  @media screen and (min-width: $narrow-size) {
+    float: left;
+    text-align: right;
+    min-width: 5rem;
+    margin-left: -5rem;
+    margin-top: 0.28rem;
+    padding-right: 0.8rem;
+  }
+}
+.prompt-in {
+  color: #303f9f;
+}
+.prompt-out {
+  color: #d84315;
 }
 
 // darkness
