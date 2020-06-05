@@ -280,6 +280,12 @@ pre {
   .codeout & {
     background-color: $whiteout;
   }
+  .plot & {
+    line-height: 1;
+  }
+  .ascii & {
+    line-height: 1.2;
+  }
 
   code {
     display: block;
@@ -341,7 +347,7 @@ li {
     margin-bottom: 0;
 
     .links & {
-    margin-top: 0.25rem;
+      margin-top: 0.25rem;
     }
   }
 }
