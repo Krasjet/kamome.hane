@@ -324,12 +324,12 @@ ol {
 
 li,
 dt {
-  font-size: 96%;
+  font-size: 0.96em;
   margin-bottom: 0.25rem;
 }
 
 dd {
-  font-size: 93%;
+  font-size: 0.93em;
   margin-bottom: 0.4rem;
 }
 
@@ -337,8 +337,12 @@ dd {
 li {
   li {
     padding-left: 0.7rem;
-    font-size: 100%;
+    font-size: 1em;
     margin-bottom: 0;
+  }
+
+  .toc & li {
+    padding-left: 1.2rem;
   }
 
   ul,
@@ -364,36 +368,36 @@ p + {
 
 // numbers
 ol {
-  list-style: decimal;
-  list-style-position: inside;
+  list-style: decimal inside;
 }
 
 // unordered
 ul {
   list-style: none;
 }
-ul li::before {
-  content: "-";
-  margin-right: 0.4rem;
+
+// list styles
+li::before {
+  ul & {
+    content: "-";
+    margin-right: 0.4rem;
+  }
+
+  // no bullets
+  .nobullet &,
+  .toc & {
+    content: "";
+    margin-right: 0rem;
+  }
 }
 
-// lists
+// links
 .links li::before,
 dt::before {
   content: "»";
   margin-right: 0.4rem;
 }
 
-// no bullets
-.nobullet li::before,
-.toc li::before {
-  content: "";
-  margin-right: 0rem;
-}
-
-.toc li li {
-  padding-left: 1.2rem;
-}
 // --->
 
 hr {
