@@ -150,6 +150,10 @@ h2,
 h3 {
   margin-top: $space-between;
   margin-bottom: 0.2rem;
+  // add space between heading and figure
+  + .figure {
+    margin-top: $space-between / 2;
+  }
 }
 
 // heading 1: small caps
