@@ -19,6 +19,7 @@ $code-select: #dce0e0;
 $space-between: 0.9rem;
 $min-size: 715px;
 $narrow-size: 675px;
+$video-scale: 1080/1920;
 // --->
 
 // <--- Mixins
@@ -577,5 +578,25 @@ hr {
 // center shadows for image
 img.shadow {
   box-shadow: 0px 0px 10px $shadow;
+}
+
+// vimeo video
+div.vimeo {
+  position: relative;
+  margin-bottom: $space-between;
+  // ugly solution, remember to switch to video tag when I have the money to self host
+  padding-bottom: calc(min(#{$body-text-width}, calc(100vw - #{2 * $body-pad})) * #{$video-scale});
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media all and (min-width: $narrow-size) {
+    padding-bottom: ($body-text-width + 8.5rem) * $video-scale;
+  }
 }
 // --->
