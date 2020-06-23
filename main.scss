@@ -251,6 +251,7 @@ code {
   font-size: 0.82em;
   @include hyphens(none);
   // use medium weight for body text
+  div > &,
   li &,
   p & {
     font-weight: 500;
@@ -322,6 +323,15 @@ blockquote {
   font-style: italic;
   font-size: 0.95em;
   padding-left: 0.5rem;
+  // reduce space above and below
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.center{
   // reduce space above and below
   margin-top: -0.5rem;
   margin-bottom: 0.5rem;
@@ -578,6 +588,11 @@ hr {
 // right align
 .rali {
   text-align: right;
+}
+
+// center
+.center {
+  text-align: center;
 }
 
 // center shadows for image
