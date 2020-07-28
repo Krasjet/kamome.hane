@@ -240,6 +240,14 @@ a {
     outline-style: dashed;
     outline-color: $color-outline;
   }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .darkzone &:hover {
+    text-decoration: none;
+  }
   // a custom class
   &.nofocus:focus {
     outline-style: none;
@@ -247,7 +255,7 @@ a {
 }
 
 code {
-  font-family: "fira mono", monospace;
+  font-family: "k.iosevka", "fira mono", monospace;
   font-size: 0.82em;
   @include hyphens(none);
   // use medium weight for body text
