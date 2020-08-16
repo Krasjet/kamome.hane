@@ -271,6 +271,8 @@ pre {
   background-color: $white;
   font-size: 0.86rem;
   padding: 0.5rem 1rem;
+  -moz-tab-size: 2;
+  tab-size: 2;
 
   // don't wrap lines for code block
   overflow-x: auto;
