@@ -202,7 +202,7 @@ h2 + h3 {
 header {
   white-space: nowrap;
   // right align author
-  .author {
+  .author, .subtitle {
     margin-top: -$space-between;
     margin-bottom: 0.5 * $space-between;
     text-align: right;
