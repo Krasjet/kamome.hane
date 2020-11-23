@@ -32,6 +32,8 @@ $video-scale: 1080/1920;
 @mixin cjk-scaling {
   // Need to scale down a little bit to match Garibaldi
   font-size: 89%;
+  // use full size capitals
+  font-feature-settings: "c2sc" 0;
 }
 // --->
 
