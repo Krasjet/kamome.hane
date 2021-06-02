@@ -299,6 +299,11 @@ pre {
   .plot & {
     line-height: 1;
   }
+  .no-border & {
+    background: none;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
   .ascii & {
     line-height: 1.2;
   }
