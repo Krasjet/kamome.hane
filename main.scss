@@ -450,6 +450,9 @@ _::-webkit-full-page-media, _:future, :root ol {
 _::-webkit-full-page-media, _:future, :root ul li::before {
   margin-right: 0.4rem;
 }
+_::-webkit-full-page-media, _:future, :root dt::before {
+  margin-right: 0.4rem;
+}
 _::-webkit-full-page-media, _:future, :root ul li {
   margin-bottom: 0.1rem;
 }
