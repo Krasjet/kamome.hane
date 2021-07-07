@@ -104,9 +104,8 @@ main {
       max-width: $body-text-width + 2.5rem;
       display: block;
     }
-    > .sourceCode,
-    > pre {
-      max-width: $body-text-width + 2.5rem;
+    > .wid {
+      max-width: $body-text-width + 1.5rem;
     }
     > .wider {
       max-width: $body-text-width + 5.5rem;
@@ -149,11 +148,10 @@ main {
 
 // --- Headings
 // Don't use more than 4 levels of heading
-h1,
 h2,
 h3 {
   margin-top: $space-between;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.4rem;
   // add space between heading and figure
   + .figure {
     margin-top: $space-between / 2;
@@ -167,7 +165,8 @@ h1 {
   text-transform: lowercase;
   font-size: 1.15rem;
   letter-spacing: 0.06rem;
-  margin-bottom: 0.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
 
   code {
     text-transform: none;
@@ -258,21 +257,28 @@ a {
 
 code {
   font-family: "k.iosevka", "fira mono", monospace;
-  font-size: 0.82em;
+  font-size: 0.71em;
   @include hyphens(none);
   // use medium weight for body text
   div > &,
   li &,
   p & {
     font-weight: 500;
-    font-size: 0.76em;
+  }
+  .sourceCode &,
+  .ascii &,
+  .term & {
+    font-weight: normal;
+  }
+  .term & {
+    font-size: 0.68em;
   }
 }
 
 pre {
   background-color: $white;
-  font-size: 0.86rem;
-  padding: 0.5rem 1rem;
+  // font-size: 0.86rem;
+  padding: 0.45rem 0.8rem;
   -moz-tab-size: 2;
   tab-size: 2;
 
@@ -281,7 +287,7 @@ pre {
   word-break: keep-all;
 
   // some nice shadows and rounded corners
-  border-radius: 0.4rem;
+  border-radius: 0.2rem;
   box-shadow: 1px 1px 4px $shadow;
 
   margin-bottom: $space-between;
@@ -299,13 +305,20 @@ pre {
   .plot & {
     line-height: 1;
   }
-  .no-border & {
+  &.no-border {
     background: none;
     box-shadow: none;
     margin-bottom: 0;
   }
-  .ascii & {
-    line-height: 1.2;
+  .term &,
+  &.term {
+    line-height: 1.15;
+  }
+  &.ascii {
+    line-height: 1.25;
+    p + & {
+      margin-top: -0.9rem;
+    }
   }
 
   code {
@@ -347,7 +360,9 @@ blockquote {
 
 .center{
   // reduce space above and below
-  margin-top: -0.5rem;
+  p + & {
+    margin-top: -0.6rem;
+  }
   margin-bottom: 0.5rem;
   p {
     margin-bottom: 0.5rem;
@@ -355,87 +370,89 @@ blockquote {
 }
 
 // <--- lists
-ul,
-ol {
-  margin-bottom: 0.35rem;
-}
-
-li,
-dt {
-  font-size: 0.96em;
+li {
+  font-size: 0.96rem;
   margin-bottom: 0.25rem;
 }
-
+ol li {
+  margin-bottom: 0.1rem;
+}
 dd {
-  font-size: 0.93em;
+  font-size: 0.96rem;
+  margin-bottom: 0.25rem;
+}
+dt {
+  font-size: 0.96rem;
+  margin-bottom: 0.5rem;
+}
+
+ul, ol {
+  margin-top: -($space-between - 0.4rem);
   margin-bottom: 0.4rem;
-}
-
-// nested lists
-li {
-  li {
-    padding-left: 0.7rem;
-    font-size: 1em;
+  & li {
     margin-bottom: 0;
   }
-
-  .toc & li {
-    padding-left: 1.2rem;
+  li & {
+    margin-top: initial;
   }
-
-  ul,
-  ol,
-  dl {
-    margin-bottom: 0;
-
-    .links & {
-      margin-top: 0.25rem;
-    }
+  p:last-child {
+    margin-bottom: $space-between/2;
   }
 }
 
-// reduce space between paragraph and lists
-p + {
-  ul,
-  ol,
-  dl,
-  .links {
-    margin-top: -0.3rem;
+// reduce space between header and lists
+h1,h2,h3 {
+  + ul, + ol, + .links ul:first-child {
+    margin-top: 0;
   }
 }
 
-// numbers
-ol {
-  list-style: decimal inside;
+ul li::before {
+  content: "–";
+  margin-right: 1rem;
+  float: left;
 }
-
-// unordered
-ul {
+.nobullet li::before,
+.toc li::before {
+  content: "";
+  margin-right: 0;
+}
+ul, dl {
   list-style: none;
+  padding-left: 1rem;
+  text-indent: -0.95rem;
+  p:not(:first-child),pre:not(:first-child) {
+    text-indent: 0;
+  }
 }
-
-// list styles
-li::before {
-  ul & {
-    content: "-";
-    margin-right: 0.4rem;
-  }
-
-  // no bullets
-  .nobullet &,
-  .toc & {
-    content: "";
-    margin-right: 0rem;
-  }
+dt::before {
+  content: "»";
+  margin-right: 0.8rem;
+  float: left;
 }
 
 // links
-.links li::before,
-dt::before {
+.links li::before {
   content: "»";
-  margin-right: 0.4rem;
 }
 
+ol {
+  list-style-type: decimal;
+  padding-left: 1rem;
+}
+ol[type="a"] {
+  list-style-type: lower-alpha;
+}
+// webkit
+_::-webkit-full-page-media, _:future, :root ol {
+  padding-left: 1.4rem;
+}
+_::-webkit-full-page-media, _:future, :root ul li::before {
+  margin-right: 0.4rem;
+}
+_::-webkit-full-page-media, _:future, :root ul li {
+  margin-bottom: 0.1rem;
+}
 // --->
 
 hr {
@@ -518,6 +535,23 @@ hr {
     }
     &.no-period::after {
       content: "";
+    }
+
+    _::-webkit-full-page-media, _:future, :root &::before {
+      content: " (";
+    }
+    _::-webkit-full-page-media, _:future, :root &::after {
+      content: ")";
+    }
+    _::-webkit-full-page-media, _:future, :root & {
+      float: none;
+      margin: initial;
+      border: none;
+      padding: initial;
+      text-align: right;
+      width: initial;
+      font-size: inherit;
+      line-height: inherit;
     }
   }
 }
@@ -612,5 +646,23 @@ hr {
 // center shadows for image
 img.shadow {
   box-shadow: 0px 0px 10px $shadow;
+}
+.note {
+  background-color: #f0f3f3;
+  border-radius: 0.3rem;
+  box-shadow: 1px 1px 4px $shadow;
+  padding: 0 1rem 0.3rem 1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+  .adm-title {
+    font-weight: bold;
+    background-color: #d7dada;
+    margin: 0 -1rem 0.2rem -1rem;
+    padding: 0.05rem 0 0.1rem 0.6rem;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 // --->
