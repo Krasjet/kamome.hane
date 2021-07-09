@@ -372,7 +372,7 @@ blockquote {
 // <--- lists
 li {
   font-size: 0.96rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
 }
 ol li {
   margin-bottom: 0.1rem;
@@ -389,7 +389,7 @@ dt {
 ul, ol {
   margin-top: -($space-between - 0.4rem);
   margin-bottom: 0.4rem;
-  & li {
+  & & li {
     margin-bottom: 0;
   }
   li & {
