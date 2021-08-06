@@ -424,6 +424,9 @@ ul, dl {
   p:not(:first-child),pre:not(:first-child) {
     text-indent: 0;
   }
+  .mgnote {
+    text-indent: 0;
+  }
 }
 dt::before {
   content: "»";
