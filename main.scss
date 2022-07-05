@@ -411,6 +411,7 @@ ul li::before {
   content: "–";
   margin-right: 1rem;
   float: left;
+  width: 0;
 }
 .nobullet li::before,
 .toc li::before {
@@ -432,11 +433,13 @@ dt::before {
   content: "»";
   margin-right: 0.8rem;
   float: left;
+  width: 0;
 }
 
 // links
 .links li::before {
   content: "»";
+  width: 0;
 }
 
 ol {
@@ -449,12 +452,6 @@ ol[type="a"] {
 // webkit
 _::-webkit-full-page-media, _:future, :root ol {
   padding-left: 1.4rem;
-}
-_::-webkit-full-page-media, _:future, :root ul li::before {
-  margin-right: 0.4rem;
-}
-_::-webkit-full-page-media, _:future, :root dt::before {
-  margin-right: 0.4rem;
 }
 _::-webkit-full-page-media, _:future, :root ul li {
   margin-bottom: 0.1rem;
