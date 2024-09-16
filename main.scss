@@ -209,6 +209,12 @@ header {
     text-align: right;
   }
 
+  .date {
+    margin-top: -1.5*$space-between;
+    margin-bottom: 0.5 * $space-between;
+    text-align: right;
+  }
+
   #title {
     margin-top: 0;
     font-size: 1.7rem;
